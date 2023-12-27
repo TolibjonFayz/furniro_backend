@@ -1,6 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { UserModule } from './user/user.module';
+import { OtpModule } from './otp/otp.module';
+import { User } from './user/model/user.model';
+import { Otp } from './otp/models/otp.model';
 
 @Module({
   imports: [
@@ -12,10 +16,12 @@ import { SequelizeModule } from '@nestjs/sequelize';
       username: process.env.POSTGRES_USER,
       password: String(process.env.POSTGRES_PASSWORD),
       database: process.env.POSTGRES_DB,
-      models: [],
+      models: [User, Otp],
       autoLoadModels: true,
       logging: false,
     }),
+    UserModule,
+    OtpModule,
   ],
   controllers: [],
   providers: [],

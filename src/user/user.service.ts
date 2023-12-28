@@ -39,6 +39,7 @@ export class UserService {
     });
     if (user) throw new BadRequestException('User alreadye exists');
     const otpinfo = await this.signInWithOtp(signUpUserDto.phone_number);
+
     const newuser = await this.UserRepository.create(signUpUserDto);
 
     //refresh and access tokens are generating
@@ -240,7 +241,6 @@ export class UserService {
     const check_number = phone_number;
 
     const obj: IOtpType = JSON.parse(await decode(verification_key));
-    console.log(obj, 'obj');
 
     if (obj.phone_number != check_number) {
       throw new BadRequestException("Otp didn't send to this phone number");
@@ -254,6 +254,10 @@ export class UserService {
       throw new BadRequestException('wrong one time password');
     }
     otpDB = otpDB.dataValues;
+    const updating = await this.UserRepository.update(
+      { is_active: true },
+      { where: { phone_number: phone_number } },
+    );
 
     if (otpDB) {
       if (!otpDB.verified) {

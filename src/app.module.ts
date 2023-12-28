@@ -5,6 +5,9 @@ import { UserModule } from './user/user.module';
 import { OtpModule } from './otp/otp.module';
 import { User } from './user/model/user.model';
 import { Otp } from './otp/models/otp.model';
+import { CategoryModule } from './category/category.module';
+import { ColorModule } from './color/color.module';
+import { SizeModule } from './size/size.module';
 
 @Module({
   imports: [
@@ -22,6 +25,9 @@ import { Otp } from './otp/models/otp.model';
     }),
     UserModule,
     OtpModule,
+    CategoryModule,
+    ColorModule,
+    SizeModule,
   ],
   controllers: [],
   providers: [],

@@ -8,6 +8,7 @@ import { Otp } from './otp/models/otp.model';
 import { CategoryModule } from './category/category.module';
 import { ColorModule } from './color/color.module';
 import { SizeModule } from './size/size.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { SizeModule } from './size/size.module';
     CategoryModule,
     ColorModule,
     SizeModule,
+    ProductModule,
   ],
   controllers: [],
   providers: [],

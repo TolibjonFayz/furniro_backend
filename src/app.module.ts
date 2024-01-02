@@ -10,6 +10,7 @@ import { ColorModule } from './color/color.module';
 import { SizeModule } from './size/size.module';
 import { ProductModule } from './product/product.module';
 import { ImageModule } from './image/image.module';
+import { RatingModule } from './rating/rating.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { ImageModule } from './image/image.module';
     SizeModule,
     ProductModule,
     ImageModule,
+    RatingModule,
   ],
   controllers: [],
   providers: [],

@@ -11,6 +11,7 @@ import { SizeModule } from './size/size.module';
 import { ProductModule } from './product/product.module';
 import { ImageModule } from './image/image.module';
 import { RatingModule } from './rating/rating.module';
+import { ReviewsModule } from './reviews/reviews.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { RatingModule } from './rating/rating.module';
     ProductModule,
     ImageModule,
     RatingModule,
+    ReviewsModule,
   ],
   controllers: [],
   providers: [],

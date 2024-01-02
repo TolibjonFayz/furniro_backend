@@ -6,8 +6,10 @@ import {
   DataType,
   ForeignKey,
   BelongsTo,
+  HasMany,
 } from 'sequelize-typescript';
 import { Category } from '../../category/models/category.model';
+import { Image } from '../../image/model/image.model';
 
 interface ProductAtr {
   name: String;
@@ -82,4 +84,7 @@ export class Product extends Model<Product, ProductAtr> {
   category_id: number;
   @BelongsTo(() => Category)
   category: Category;
+
+  @HasMany(() => Image)
+  image: Image;
 }

@@ -38,6 +38,13 @@ export class ProductController {
     return this.productService.findOneProduct(id);
   }
 
+  //Get all products
+  @ApiOperation({ summary: 'Get product by category id' })
+  @Get('category/:id')
+  findByCategory(@Param('id') id: number) {
+    return this.productService.getProductByCategoryId(id);
+  }
+
   //Update product by id
   @ApiOperation({ summary: 'Update product by id' })
   @Put('update/:id')

@@ -29,6 +29,12 @@ export class ProductService {
     return await this.productRepository.findOne({ where: { id: id } });
   }
 
+  async getProductByCategoryId(category_id: number) {
+    return await this.productRepository.findAll({
+      where: { category_id: category_id },
+    });
+  }
+
   async updateProduct(id: number, updateProfuctDto: UpdateProductDto) {
     const updating = await this.productRepository.update(updateProfuctDto, {
       where: {

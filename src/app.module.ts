@@ -14,6 +14,7 @@ import { RatingModule } from './rating/rating.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { ProductColorModule } from './product_color/product_color.module';
 import { ProductSizeModule } from './product_size/product_size.module';
+import { CartModule } from './cart/cart.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { ProductSizeModule } from './product_size/product_size.module';
     ReviewsModule,
     ProductColorModule,
     ProductSizeModule,
+    CartModule,
   ],
   controllers: [],
   providers: [],

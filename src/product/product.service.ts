@@ -42,7 +42,22 @@ export class ProductService {
   }
 
   async findOneProduct(id: number) {
-    return await this.productRepository.findOne({ where: { id: id } });
+    return await this.productRepository.findOne({
+      where: { id: id },
+      include: [
+        {
+          model: Product_color,
+          include: [{ model: Color }],
+        },
+        {
+          model: Product_size,
+          include: [{ model: Size }],
+        },
+        {
+          all: true,
+        },
+      ],
+    });
   }
 
   async getProductByCategoryId(category_id: number) {

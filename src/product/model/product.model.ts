@@ -12,6 +12,7 @@ import { Category } from '../../category/models/category.model';
 import { Image } from '../../image/model/image.model';
 import { Rating } from '../../rating/model/rating.model';
 import { Reviews } from '../../reviews/model/reviews.model';
+import { Product_color } from '../../product_color/model/product_color.model';
 
 interface ProductAtr {
   name: String;
@@ -95,4 +96,7 @@ export class Product extends Model<Product, ProductAtr> {
 
   @HasMany(() => Reviews)
   reviews: Reviews;
+
+  @HasMany(() => Product_color)
+  product_color: Product_color;
 }

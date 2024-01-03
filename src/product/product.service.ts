@@ -3,6 +3,10 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Product } from './model/product.model';
+import { Color } from '../color/model/color.model';
+import { Product_color } from '../product_color/model/product_color.model';
+import { Product_size } from '../product_size/model/product_size.model';
+import { Size } from '../size/model/size.model';
 
 @Injectable()
 export class ProductService {
@@ -21,7 +25,19 @@ export class ProductService {
 
   async findAllProducts() {
     return await this.productRepository.findAll({
-      include: { all: true },
+      include: [
+        {
+          model: Product_color,
+          include: [{ model: Color }],
+        },
+        {
+          model: Product_size,
+          include: [{ model: Size }],
+        },
+        {
+          all: true,
+        },
+      ],
     });
   }
 

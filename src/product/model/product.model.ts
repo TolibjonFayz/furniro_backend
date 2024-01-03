@@ -13,6 +13,7 @@ import { Image } from '../../image/model/image.model';
 import { Rating } from '../../rating/model/rating.model';
 import { Reviews } from '../../reviews/model/reviews.model';
 import { Product_color } from '../../product_color/model/product_color.model';
+import { Product_size } from '../../product_size/model/product_size.model';
 
 interface ProductAtr {
   name: String;
@@ -99,4 +100,7 @@ export class Product extends Model<Product, ProductAtr> {
 
   @HasMany(() => Product_color)
   product_color: Product_color;
+
+  @HasMany(() => Product_size)
+  product_size: Product_size;
 }

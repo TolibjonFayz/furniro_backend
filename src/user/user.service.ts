@@ -97,12 +97,19 @@ export class UserService {
 
   //Signin user
   async signInUser(siginUserDto: SignInUserDto, res: Response) {
-    const { phone_number } = siginUserDto;
     //Is user exists?
-    const user = await this.UserRepository.findOne({
+    let user = await this.UserRepository.findOne({
       where: { phone_number: siginUserDto.phone_number },
     });
-    if (!user) throw new UnauthorizedException('User has not registered');
+    if (!user) {
+      user = await this.UserRepository.create({
+        first_name: 'User',
+        last_name: 'Userov',
+        phone_number: siginUserDto.phone_number,
+      });
+    }
+
+    const otpinfo = await this.signInWithOtp(siginUserDto.phone_number);
 
     //Generate new tokens
     const tokens = await this.getTokens(user);
@@ -122,6 +129,7 @@ export class UserService {
       message: 'User signed in successfully',
       user: updateUser[1][0],
       tokens,
+      otpinfo,
     };
     return response;
   }

@@ -16,6 +16,7 @@ import { ProductColorModule } from './product_color/product_color.module';
 import { ProductSizeModule } from './product_size/product_size.module';
 import { CartModule } from './cart/cart.module';
 import { AdditionalInformationModule } from './additional_information/additional_information.module';
+import { LikesModule } from './likes/likes.module';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { AdditionalInformationModule } from './additional_information/additional
     ProductSizeModule,
     CartModule,
     AdditionalInformationModule,
+    LikesModule,
   ],
   controllers: [],
   providers: [],

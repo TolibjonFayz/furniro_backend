@@ -1,4 +1,5 @@
 {
-  "builds": [{ "src": "path/to/your/source", "use": "@now/node-server" }],
-  "routes": [{ "src": "/(.*)", "dest": "path/to/your/source/index.ts" }]
+  "version": 2,
+  "builds": [{ "src": "./src/main.ts", "use": "@vercel/node" }],
+  "routes": [{ "src": "/(.*)", "dest": "./src/main.ts" }]
 }

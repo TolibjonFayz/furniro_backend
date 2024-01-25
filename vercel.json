@@ -1,0 +1,4 @@
+{
+  "builds": [{ "src": "path/to/your/source", "use": "@now/node-server" }],
+  "routes": [{ "src": "/(.*)", "dest": "path/to/your/source/index.ts" }]
+}

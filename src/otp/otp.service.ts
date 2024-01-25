@@ -37,9 +37,6 @@ export class OtpService {
 
   async sendOtp(phone: number, otp: number) {
     try {
-      //  console.log(phone, typeof phone, "Phone");
-      //  console.log(process.env.SMS_PASSWORD, process.env.WEB_HOOK_URL);
-
       const tokenData = JSON.parse(
         fs.readFileSync(path.join(__dirname, 'token.json'), 'utf-8'),
       );
@@ -64,8 +61,6 @@ export class OtpService {
       } catch (error) {
         console.log(error.data);
       }
-
-      // console.log(response, 'response');
       return true;
     } catch (error) {
       console.log(`Error ${error}`);

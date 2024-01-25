@@ -35,6 +35,12 @@ export class ImageController {
     return this.imageService.findOne(id);
   }
 
+  @ApiOperation({ summary: 'Get image by product id' })
+  @Get('product/:id')
+  getImageByProductId(@Param('id') id: number) {
+    return this.imageService.getImageByProductId(id);
+  }
+
   @ApiOperation({ summary: 'Update image by id' })
   @Put('update/:id')
   update(@Param('id') id: number, @Body() updateImageDto: UpdateImageDto) {

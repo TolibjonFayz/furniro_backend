@@ -48,6 +48,12 @@ export class LikesController {
     return this.likesService.update(id, updateLikeDto);
   }
 
+  @ApiOperation({ summary: 'Delete like by user_id and product_id' })
+  @Post('delete/user')
+  removeByUserId(@Body() updateLikeDto: UpdateLikeDto) {
+    return this.likesService.removeLikeByIds(updateLikeDto);
+  }
+
   @ApiOperation({ summary: 'Delete like by id' })
   @Delete('delete/:id')
   remove(@Param('id') id: number) {

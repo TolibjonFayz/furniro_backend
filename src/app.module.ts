@@ -10,7 +10,6 @@ import { ColorModule } from './color/color.module';
 import { SizeModule } from './size/size.module';
 import { ProductModule } from './product/product.module';
 import { ImageModule } from './image/image.module';
-import { RatingModule } from './rating/rating.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { ProductColorModule } from './product_color/product_color.module';
 import { ProductSizeModule } from './product_size/product_size.module';
@@ -28,9 +27,15 @@ import { LikesModule } from './likes/likes.module';
       username: process.env.POSTGRES_USER,
       password: String(process.env.POSTGRES_PASSWORD),
       database: process.env.POSTGRES_DB,
-      models: [User, Otp],
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false, // You can set this to true in production for additional security
+        },
+      },
       autoLoadModels: true,
       logging: false,
+      models: [User, Otp],
     }),
     UserModule,
     OtpModule,
@@ -39,7 +44,6 @@ import { LikesModule } from './likes/likes.module';
     SizeModule,
     ProductModule,
     ImageModule,
-    RatingModule,
     ReviewsModule,
     ProductColorModule,
     ProductSizeModule,

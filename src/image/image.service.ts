@@ -25,6 +25,12 @@ export class ImageService {
     return await this.ImageRepository.findByPk(id);
   }
 
+  async getImageByProductId(product_id: number) {
+    return await this.ImageRepository.findOne({
+      where: { product_id: product_id },
+    });
+  }
+
   async update(id: number, updateImageDto: UpdateImageDto) {
     const updating = await this.ImageRepository.update(updateImageDto, {
       where: { id: id },

@@ -36,8 +36,6 @@ export async function encode(str: string) {
 }
 
 export async function decode(str: string) {
-  console.log(str, 'str');
-
   const key = password_derive_bytes(password, '', 100, 32);
   const decipher = crypto.createDecipheriv('aes-256-cbc', key, ivstring);
   let decrypted = decipher.update(str, 'base64', 'utf8');

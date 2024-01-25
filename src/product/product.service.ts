@@ -63,6 +63,7 @@ export class ProductService {
   async getProductByCategoryId(category_id: number) {
     return await this.productRepository.findAll({
       where: { category_id: category_id },
+      include: { all: true },
     });
   }
 

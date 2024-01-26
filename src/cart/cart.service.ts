@@ -65,6 +65,13 @@ export class CartService {
     return updating;
   }
 
+  async removeUserCart(user_id: number) {
+    const deleting = await this.CartRepository.destroy({
+      where: { user_id: user_id },
+    });
+    return deleting;
+  }
+
   async remove(id: number) {
     const deleting = await this.CartRepository.destroy({
       where: { id: id },

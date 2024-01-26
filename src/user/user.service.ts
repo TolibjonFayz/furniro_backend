@@ -21,6 +21,8 @@ import { OtpService } from '../otp/otp.service';
 import { AddMinutesToDate } from '../common/helpers/addMinutes';
 import { VerifyOtpDto } from './dto/verify-otp.dto';
 import { IOtpType } from '../common/types/decode-otp.type';
+import { MailService } from '../mail/mail.service';
+import { SendMessageDto } from './dto/send-message.dto';
 
 @Injectable()
 export class UserService {
@@ -29,6 +31,7 @@ export class UserService {
     @InjectModel(Otp) private readonly otpRepo: typeof Otp,
     private readonly jwtservice: JwtService,
     private readonly otpService: OtpService,
+    private readonly mailService: MailService,
   ) {}
 
   //SignUp user
@@ -381,5 +384,9 @@ export class UserService {
     );
     if (verified) return true;
     throw new BadRequestException('Wrong one time password ...');
+  }
+
+  async sendUserPurchaseInfoToAdmin(sendMessageDto: SendMessageDto) {
+    await this.mailService.sendUserMail(sendMessageDto);
   }
 }

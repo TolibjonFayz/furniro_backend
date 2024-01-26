@@ -17,6 +17,7 @@ import { CookieGetter } from '../decorators/cookieGetter.decorator';
 import { User } from './model/user.model';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { VerifyOtpDto } from './dto/verify-otp.dto';
+import { SendMessageDto } from './dto/send-message.dto';
 
 @ApiTags('Users')
 @Controller('user')
@@ -122,5 +123,12 @@ export class UserController {
     @Res({ passthrough: true }) res: Response,
   ) {
     return this.userService.verifyOtpClient(verifyOtpDto, res);
+  }
+
+  //Send product info to admin
+  @ApiOperation({ summary: 'Send user purchase info to admin' })
+  @Post('message')
+  async sendMessage(@Body() sendMessageDto: SendMessageDto) {
+    return this.userService.sendUserPurchaseInfoToAdmin(sendMessageDto);
   }
 }

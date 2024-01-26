@@ -48,6 +48,12 @@ export class CartController {
     return this.cartService.update(id, updateCartDto);
   }
 
+  @ApiOperation({ summary: 'Delete cart by user id' })
+  @Delete('delete/user/:id')
+  removeUserCart(@Param('id') id: number) {
+    return this.cartService.removeUserCart(id);
+  }
+
   @ApiOperation({ summary: 'Delete cart by id' })
   @Delete('delete/:id')
   remove(@Param('id') id: number) {

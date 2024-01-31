@@ -6,11 +6,13 @@ import {
   Param,
   Delete,
   Put,
+  Query,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { SearchProductDto } from './dto/search-product.dto';
 
 @ApiTags('Product')
 @Controller('product')
@@ -26,9 +28,20 @@ export class ProductController {
 
   //Get all products
   @ApiOperation({ summary: 'Get all products' })
-  @Get('all')
-  findAll() {
-    return this.productService.findAllProducts();
+  @Post('all/:q')
+  findAll(@Query() q: any, @Body() searchProductDto: SearchProductDto) {
+    return this.productService.findAllProducts(
+      q?.page,
+      q?.limit,
+      searchProductDto,
+    );
+  }
+
+  // Get Products By Limit
+  @ApiOperation({ summary: 'Get Products By Limit' })
+  @Get('all/limit/:q')
+  findAllByLimit(@Query() q: any) {
+    return this.productService.getProductsByLimit(q?.limit);
   }
 
   //Get all products
@@ -40,9 +53,9 @@ export class ProductController {
 
   //Get all products
   @ApiOperation({ summary: 'Get product by category id' })
-  @Get('category/:id')
-  findByCategory(@Param('id') id: number) {
-    return this.productService.getProductByCategoryId(id);
+  @Get('category/:id/:q')
+  findByCategory(@Query() q: any, @Param('id') id: number) {
+    return this.productService.getProductByCategoryId(id, q?.limit);
   }
 
   //Update product by id
